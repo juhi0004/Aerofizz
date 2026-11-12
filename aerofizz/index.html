@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEROFIZZ — Feel the Fizz. Live the Moment.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ========== FLOATING BUBBLES BACKGROUND ========== -->
+    <div class="bubbles-container" id="bubbles"></div>
+
+    <!-- ========== NAVIGATION BAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">AEROFIZZ</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#drinks" class="nav-link">Our Drinks</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#story" class="nav-link">Our Story</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <a href="#contact" class="nav-btn">GET STARTED</a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero-card" id="heroCard">
+            <!-- Large watermark text like NIKE in the reference image -->
+            <div class="hero-watermark" aria-hidden="true">AEROFIZZ</div>
+
+            <div class="hero-card-content">
+                <div class="hero-left">
+                    <span class="hero-badge fade-in">NEW REFRESHMENT COLLECTION</span>
+                    <h1 class="hero-title fade-in" id="heroTitle">AEROFIZZ<br><span id="heroFlavourName">BERRY BLISS</span></h1>
+                    <p class="hero-price fade-in" id="heroPrice">₹40.00</p>
+                    <p class="hero-description fade-in" id="heroDesc">
+                        Sweet, fruity and bursting with berry-inspired refreshment. Crafted with natural fruit essences and fine carbonated bubbles for an extraordinary moment.
+                    </p>
+
+                    <!-- Size selector pills (like SELECT SIZE in Nike reference) -->
+                    <div class="hero-selector-group fade-in">
+                        <span class="hero-selector-label">SELECT SIZE (ML)</span>
+                        <div class="size-pills" id="sizePills">
+                            <button class="size-pill active" data-size="250ml" data-price="₹40.00">250</button>
+                            <button class="size-pill" data-size="330ml" data-price="₹55.00">330</button>
+                            <button class="size-pill" data-size="500ml" data-price="₹75.00">500</button>
+                            <button class="size-pill" data-size="4-pack" data-price="₹149.00">4-PACK</button>
+                        </div>
+                    </div>
+
+                    <!-- Flavour selector dots (like SELECT COLOR in Nike reference) -->
+                    <div class="hero-selector-group fade-in">
+                        <span class="hero-selector-label">SELECT FLAVOUR</span>
+                        <div class="flavour-dots" id="flavourDots">
+                            <button class="flavour-dot active" data-index="0" data-flavour="BERRY BLISS" data-price-250="₹40.00" data-image="images/hero-can.png" data-desc="Sweet, fruity and bursting with berry-inspired refreshment. Crafted with natural fruit essences and fine carbonated bubbles." style="background: #e84393;" title="Berry Bliss" aria-label="Berry Bliss"></button>
+                            <button class="flavour-dot" data-index="1" data-flavour="BLUE RUSH" data-price-250="₹40.00" data-image="images/blue-can.png" data-desc="A vibrant combination of blueberry sweetness and crisp citrusy freshness, energized with effervescent sparkle." style="background: #0984e3;" title="Blue Rush" aria-label="Blue Rush"></button>
+                            <button class="flavour-dot" data-index="2" data-flavour="MANGO GLOW" data-price-250="₹40.00" data-image="images/mango-glow.png" data-desc="A luscious tropical mango burst with sun-drenched sweetness and vibrant fizz for everyday joy." style="background: #fdcb6e;" title="Mango Glow" aria-label="Mango Glow"></button>
+                            <button class="flavour-dot" data-index="3" data-flavour="CITRUS WAVE" data-price-250="₹40.00" data-image="images/citrus-wave.png" data-desc="Zesty Italian lemon and chilled lime with an electric pop of bubbly coolness to quench any thirst." style="background: #00b894;" title="Citrus Wave" aria-label="Citrus Wave"></button>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons fade-in">
+                        <button class="btn btn-primary" onclick="addCurrentHeroToCart()">ORDER THIS FLAVOUR</button>
+                        <a href="#drinks" class="btn btn-outline">VIEW ALL FLAVOURS</a>
+                    </div>
+                </div>
+
+                <div class="hero-right fade-in">
+                    <div class="hero-can-wrapper">
+                        <img src="images/hero-can.png" alt="AEROFIZZ Premium Sparkling Drink" class="hero-can" id="heroCan">
+                    </div>
+
+                    <!-- Prev / Next arrows under the can like the Nike UI -->
+                    <div class="hero-controls">
+                        <button class="hero-arrow-btn" id="heroPrevBtn" aria-label="Previous flavour" title="Previous flavour">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <span class="hero-counter" id="heroCounter">01 / 04</span>
+                        <button class="hero-arrow-btn" id="heroNextBtn" aria-label="Next flavour" title="Next flavour">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Bottom-right action like "Play Video" in Nike design -->
+                    <div class="hero-card-footer">
+                        <a href="#story" class="hero-play-link">
+                            <span class="play-icon-circle">▶</span>
+                            <span>WATCH BRAND STORY</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES SECTION ========== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">WHY CHOOSE US</span>
+                <h2 class="section-title">Why Choose AEROFIZZ?</h2>
+                <p class="section-description">
+                    More than just a drink. It's a refreshing experience designed to make every ordinary moment extraordinary.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-number">01</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.6"/>
+                            <circle cx="18" cy="14" r="2.5" fill="currentColor" opacity="0.4"/>
+                            <circle cx="30" cy="16" r="2" fill="currentColor" opacity="0.5"/>
+                            <circle cx="16" cy="28" r="2" fill="currentColor" opacity="0.3"/>
+                            <circle cx="32" cy="30" r="2.5" fill="currentColor" opacity="0.5"/>
+                            <circle cx="24" cy="36" r="1.5" fill="currentColor" opacity="0.4"/>
+                            <circle cx="12" cy="20" r="1.5" fill="currentColor" opacity="0.3"/>
+                            <circle cx="36" cy="22" r="1.5" fill="currentColor" opacity="0.4"/>
+                            <circle cx="24" cy="10" r="2" fill="currentColor" opacity="0.3"/>
+                            <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">The Perfect Fizz</h3>
+                    <p class="feature-desc">Experience the delightful sparkle of perfectly carbonated beverages that bring a refreshing sensation with every sip.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">02</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="28" r="6" fill="currentColor" opacity="0.3"/>
+                            <circle cx="32" cy="28" r="6" fill="currentColor" opacity="0.3"/>
+                            <circle cx="24" cy="18" r="6" fill="currentColor" opacity="0.3"/>
+                            <circle cx="16" cy="28" r="3" fill="currentColor" opacity="0.5"/>
+                            <circle cx="32" cy="28" r="3" fill="currentColor" opacity="0.5"/>
+                            <circle cx="24" cy="18" r="3" fill="currentColor" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Exciting Fruit Flavours</h3>
+                    <p class="feature-desc">From juicy berries to refreshing citrus, discover a collection of exciting flavours made to satisfy your taste buds.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">03</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="8" width="20" height="32" rx="4" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+                            <rect x="18" y="12" width="12" height="24" rx="2" fill="currentColor" opacity="0.2"/>
+                            <path d="M20 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                            <circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/>
+                            <path d="M24 20v8M20 24h8" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Premium Experience</h3>
+                    <p class="feature-desc">Every can features a contemporary design and carefully developed flavour profile for a premium refreshment experience.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">04</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 6l4 8 8 2-6 6 1 9-7-4-7 4 1-9-6-6 8-2z" stroke="currentColor" stroke-width="1.5" fill="currentColor" opacity="0.3"/>
+                            <circle cx="10" cy="36" r="2" fill="currentColor" opacity="0.3"/>
+                            <circle cx="38" cy="36" r="2" fill="currentColor" opacity="0.3"/>
+                            <circle cx="8" cy="18" r="1.5" fill="currentColor" opacity="0.2"/>
+                            <circle cx="40" cy="18" r="1.5" fill="currentColor" opacity="0.2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Made for Every Moment</h3>
+                    <p class="feature-desc">Whether it's a study break, a weekend outing or a celebration, AEROFIZZ adds a little sparkle to your day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OUR DRINKS SECTION ========== -->
+    <section class="drinks" id="drinks">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">OUR COLLECTION</span>
+                <h2 class="section-title">Find Your Favourite Fizz.</h2>
+                <p class="section-description">
+                    Every flavour has its own personality. Discover your perfect match and find a new reason to refresh.
+                </p>
+            </div>
+            <div class="drinks-grid">
+                <div class="drink-card fade-in" data-color="#e84393">
+                    <div class="drink-image-wrapper">
+                        <div class="drink-glow" style="background: rgba(232, 67, 147, 0.3);"></div>
+                        <img src="images/berry-bliss.png" alt="Berry Bliss" class="drink-image">
+                    </div>
+                    <div class="drink-info">
+                        <h3 class="drink-name">Berry Bliss</h3>
+                        <span class="drink-flavour">Strawberry & Raspberry</span>
+                        <p class="drink-desc">Sweet, fruity and bursting with berry-inspired refreshment.</p>
+                        <div class="drink-footer">
+                            <span class="drink-price">₹40 <small>/ 250 ml</small></span>
+                            <button class="drink-btn" onclick="addToCart('Berry Bliss')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="drink-card fade-in" data-color="#6c5ce7">
+                    <div class="drink-image-wrapper">
+                        <div class="drink-glow" style="background: rgba(108, 92, 231, 0.3);"></div>
+                        <img src="images/blue-rush.png" alt="Blue Rush" class="drink-image">
+                    </div>
+                    <div class="drink-info">
+                        <h3 class="drink-name">Blue Rush</h3>
+                        <span class="drink-flavour">Blueberry & Citrus</span>
+                        <p class="drink-desc">A vibrant combination of fruity sweetness and citrusy freshness.</p>
+                        <div class="drink-footer">
+                            <span class="drink-price">₹40 <small>/ 250 ml</small></span>
+                            <button class="drink-btn" onclick="addToCart('Blue Rush')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="drink-card fade-in" data-color="#e17055">
+                    <div class="drink-image-wrapper">
+                        <div class="drink-glow" style="background: rgba(225, 112, 85, 0.3);"></div>
+                        <img src="images/mango-glow.png" alt="Mango Glow" class="drink-image">
+                    </div>
+                    <div class="drink-info">
+                        <h3 class="drink-name">Mango Glow</h3>
+                        <span class="drink-flavour">Tropical Mango</span>
+                        <p class="drink-desc">A tropical-inspired flavour with a deliciously fruity character.</p>
+                        <div class="drink-footer">
+                            <span class="drink-price">₹40 <small>/ 250 ml</small></span>
+                            <button class="drink-btn" onclick="addToCart('Mango Glow')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="drink-card fade-in" data-color="#00b894">
+                    <div class="drink-image-wrapper">
+                        <div class="drink-glow" style="background: rgba(0, 184, 148, 0.3);"></div>
+                        <img src="images/citrus-wave.png" alt="Citrus Wave" class="drink-image">
+                    </div>
+                    <div class="drink-info">
+                        <h3 class="drink-name">Citrus Wave</h3>
+                        <span class="drink-flavour">Lemon & Lime</span>
+                        <p class="drink-desc">A zesty, crisp and refreshing citrus-inspired experience.</p>
+                        <div class="drink-footer">
+                            <span class="drink-price">₹40 <small>/ 250 ml</small></span>
+                            <button class="drink-btn" onclick="addToCart('Citrus Wave')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT / HOW IT WORKS SECTION ========== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-visual fade-in">
+                    <div class="about-image-container">
+                        <div class="about-glow"></div>
+                        <img src="images/iridescent-can.png" alt="AEROFIZZ Premium Can" class="about-image">
+                    </div>
+                </div>
+                <div class="about-content fade-in">
+                    <span class="section-badge">ABOUT US</span>
+                    <h2 class="section-title left-align">A Little Sparkle Behind Every Sip.</h2>
+                    <p class="about-text">
+                        At AEROFIZZ, we believe that refreshment should be more than just quenching your thirst. 
+                        It should be an experience.
+                    </p>
+                    <p class="about-text">
+                        Our vision is to bring together exciting flavours, sparkling sensations and creative product 
+                        designs to create beverages that make everyday moments more enjoyable.
+                    </p>
+                    <p class="about-text">
+                        From selecting your favourite flavour to enjoying that first refreshing sip, we make 
+                        discovering your next favourite drink simple and exciting.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS / OUR STORY ========== -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">HOW IT WORKS</span>
+                <h2 class="section-title">From Shelf to Sip in 3 Easy Steps.</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">01</div>
+                    <div class="step-line"></div>
+                    <h3 class="step-title">Explore Your Flavour</h3>
+                    <p class="step-desc">Browse our collection of unique sparkling beverages and discover your favourite.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">02</div>
+                    <div class="step-line"></div>
+                    <h3 class="step-title">Choose Your Pack</h3>
+                    <p class="step-desc">Select individual cans or a specially curated flavour combination.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">03</div>
+                    <div class="step-line"></div>
+                    <h3 class="step-title">Chill. Open. Enjoy.</h3>
+                    <p class="step-desc">Serve chilled, open your can and enjoy the sparkling experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING SECTION ========== -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">OUR PACKS</span>
+                <h2 class="section-title">Good Things Come in Packs.</h2>
+                <p class="section-description">
+                    Find the perfect pack for yourself, your friends or your next celebration.
+                </p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card fade-in">
+                    <div class="pricing-header">
+                        <span class="pricing-label">Starter Pack</span>
+                        <div class="pricing-price">
+                            <span class="currency">₹</span>
+                            <span class="amount">149</span>
+                        </div>
+                        <span class="pricing-period">4 cans · 250 ml each</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Choose any 4 flavours
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Individual cans
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Perfect for trying AEROFIZZ
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Best to explore
+                        </li>
+                    </ul>
+                    <button class="btn btn-outline pricing-btn" onclick="selectPlan('Starter Pack')">Choose Starter</button>
+                </div>
+                <div class="pricing-card popular fade-in">
+                    <div class="popular-badge">Popular Choice</div>
+                    <div class="pricing-header">
+                        <span class="pricing-label">Party Pack</span>
+                        <div class="pricing-price">
+                            <span class="currency">₹</span>
+                            <span class="amount">499</span>
+                        </div>
+                        <span class="pricing-period">12 cans · 250 ml each</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Choose any 12 flavours
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Mixed flavour combinations
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Perfect for sharing
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            Save more per can
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary pricing-btn" onclick="selectPlan('Party Pack')">Choose Party Pack</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info fade-in">
+                    <span class="section-badge">GET IN TOUCH</span>
+                    <h2 class="section-title left-align">Let's Make Every Moment Sparkle!</h2>
+                    <p class="contact-text">
+                        Have questions about our drinks, want to collaborate with us or interested in becoming a retail partner? We'd love to hear from you.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M22 4L12 13 2 4"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">hello@aerofizz.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">+91 98765 43210</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Pune, Maharashtra, India</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                    <circle cx="12" cy="12" r="5"/>
+                                    <circle cx="17.5" cy="6.5" r="1.5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Instagram</span>
+                                <span class="contact-value">@drink.aerofizz</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-cta">
+                        <p>Want to bring AEROFIZZ to your store?</p>
+                        <span>Become a retail partner and introduce our sparkling flavours to your customers.</span>
+                        <button class="btn btn-outline" onclick="openPartnerModal()">BECOME A PARTNER</button>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper fade-in">
+                    <form class="contact-form" id="contactForm" onsubmit="handleContactForm(event)">
+                        <h3 class="form-title">Send us a message</h3>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                            <span class="error-message" id="subjectError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us what's on your mind..." required></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-btn">
+                            <span>SEND MESSAGE</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </button>
+                    </form>
+                    <!-- Success message -->
+                    <div class="form-success" id="formSuccess">
+                        <div class="success-icon">✓</div>
+                        <h3>Message Sent!</h3>
+                        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                        <button class="btn btn-outline" onclick="resetForm()">Send Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        <span class="logo-icon">✦</span>
+                        <span class="logo-text">AEROFIZZ</span>
+                    </a>
+                    <p class="footer-tagline">A little sparkle. A lot of refreshment.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <circle cx="12" cy="12" r="5"/>
+                                <circle cx="17.5" cy="6.5" r="1.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Pinterest">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.431 1.78 2.431 2.137 0 3.777-2.252 3.777-5.504 0-2.878-2.069-4.89-5.024-4.89-3.421 0-5.432 2.565-5.432 5.217 0 1.034.398 2.143.895 2.745.098.119.112.223.083.338-.091.379-.293 1.194-.333 1.361-.053.218-.174.265-.401.159-1.492-.694-2.424-2.875-2.424-4.627 0-3.769 2.737-7.229 7.891-7.229 4.144 0 7.365 2.953 7.365 6.899 0 4.117-2.595 7.431-6.199 7.431-1.211 0-2.348-.63-2.738-1.373l-.744 2.84c-.27 1.037-1 2.34-1.487 3.133C9.584 23.812 10.77 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#drinks">Our Drinks</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 AEROFIZZ. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== MODALS ========== -->
+    <!-- Cart Toast -->
+    <div class="toast" id="cartToast">
+        <div class="toast-icon">🛒</div>
+        <div class="toast-content">
+            <strong id="toastTitle">Added to Cart!</strong>
+            <p id="toastMessage">Berry Bliss has been added to your cart.</p>
+        </div>
+        <button class="toast-close" onclick="closeToast()">&times;</button>
+    </div>
+
+    <!-- Plan Selection Modal -->
+    <div class="modal-overlay" id="planModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('planModal')">&times;</button>
+            <div class="modal-icon">🎉</div>
+            <h3 id="modalTitle">Great Choice!</h3>
+            <p id="modalMessage">You've selected the Starter Pack. Enter your details to proceed.</p>
+            <form onsubmit="handlePlanForm(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Partner Modal -->
+    <div class="modal-overlay" id="partnerModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('partnerModal')">&times;</button>
+            <div class="modal-icon">🤝</div>
+            <h3>Become a Retail Partner</h3>
+            <p>Join the AEROFIZZ family! Fill in your details and we'll get in touch.</p>
+            <form onsubmit="handlePartnerForm(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Store / Business Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Business Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="City" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="scrollToTop()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+        </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
